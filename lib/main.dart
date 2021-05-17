@@ -53,6 +53,8 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
+    double height = MediaQuery.of(context).size.height;
+    double width = MediaQuery.of(context).size.width;
     return Scaffold(
       body: CustomScrollView(
         slivers: <Widget>[
@@ -71,10 +73,22 @@ class _MyHomePageState extends State<MyHomePage> {
             delegate: SliverChildBuilderDelegate(
                   (BuildContext context, int index) {
                 return Container(
-                  color: index.isOdd ? Colors.white : Colors.black12,
-                  height: 100.0,
-                  child: Center(
-                    child: Text('$index', textScaleFactor: 5),
+                  height: height,
+                  child: Row(
+                    children: [
+                      Expanded(
+                          flex: 40,
+                          child: Container(
+                            color: AppColors.AccentColor,
+                          )
+                      ),
+                      Expanded(
+                          flex: 60,
+                          child: Container(
+                            color: AppColors.PrimaryColor,
+                          )
+                      )
+                    ],
                   ),
                 );
               },
