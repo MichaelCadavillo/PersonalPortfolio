@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:personal_portfolio/utility/colors.dart';
+import 'package:personal_portfolio/views/landing_screen/landing_screen.dart';
 
 void main() {
   runApp(MyApp());
@@ -47,56 +47,17 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  bool _pinned = true;
-  bool _snap = true;
-  bool _floating = true;
-
   @override
   Widget build(BuildContext context) {
-    double height = MediaQuery.of(context).size.height;
-    double width = MediaQuery.of(context).size.width;
-    return Scaffold(
-      body: CustomScrollView(
-        slivers: <Widget>[
-          SliverAppBar(
-            backgroundColor: AppColors.PrimaryColor,
-            pinned: _pinned,
-            snap: _snap,
-            floating: _floating,
-            expandedHeight: 160.0,
-            /*flexibleSpace: const FlexibleSpaceBar(
-              title: Text('SliverAppBar'),
-              background: FlutterLogo(),
-            ),*/
-          ),
-          SliverList(
-            delegate: SliverChildBuilderDelegate(
-                  (BuildContext context, int index) {
-                return Container(
-                  height: height,
-                  child: Row(
-                    children: [
-                      Expanded(
-                          flex: 40,
-                          child: Container(
-                            color: AppColors.AccentColor,
-                          )
-                      ),
-                      Expanded(
-                          flex: 60,
-                          child: Container(
-                            color: AppColors.PrimaryColor,
-                          )
-                      )
-                    ],
-                  ),
-                );
-              },
-              childCount: 20,
-            ),
-          ),
-        ],
-      ),
+    return MaterialApp(
+      theme: ThemeData(fontFamily: "Roboto"),
+      onGenerateRoute: (settings) {
+        switch (settings.name) {
+          case LandingScreen.routeName:
+            return MaterialPageRoute(builder: (context) => LandingScreen());
+        }
+      },
+      initialRoute: LandingScreen.routeName,
     );
   }
 }
