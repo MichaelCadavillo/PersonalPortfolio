@@ -101,74 +101,85 @@ class _LandingScreenState extends State<LandingScreen> {
                       ),
                     ),
                     Positioned(
-                        left: wp(20),
-                        top: hp(10),
-                        child: NameCard(width: wp(26), height: hp(70))),
-                    Positioned(
-                        left: wp(48),
-                        top: hp(10),
-                        child: Container(
-                            height: hp(70),
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  "Hello",
-                                  style: TextStyle(
-                                      fontSize: 60,
-                                      fontWeight: FontWeight.bold),
-                                ),
-                                Text(
-                                  "I'm a Flutter developer from the Philippines.",
-                                  style: TextStyle(
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.w500),
-                                ),
-                                Row(children: [
-                                  ElevatedButton(
-                                    onPressed: () {},
-                                    style: ButtonStyle(
-                                      padding: MaterialStateProperty.all(
-                                          EdgeInsets.symmetric(
-                                              horizontal: 35, vertical: 15)),
-                                      shape: MaterialStateProperty.all(
-                                          RoundedRectangleBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(30.0))),
-                                    ),
-                                    child: const Text("Résumé",
-                                        style: TextStyle(fontSize: 18)),
-                                  ),
-                                  SizedBox(
-                                    width: 5,
-                                  ),
-                                  OutlinedButton(
-                                    onPressed: () {},
-                                    style: ButtonStyle(
-                                      padding: MaterialStateProperty.all(
-                                          EdgeInsets.symmetric(
-                                              horizontal: 35, vertical: 15)),
-                                      side:
-                                          MaterialStateProperty.all<BorderSide>(
-                                              BorderSide(
-                                                  color: AppColors
-                                                      .DarkPrimaryColor)),
-                                      shape: MaterialStateProperty.all(
-                                          RoundedRectangleBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(30.0))),
-                                    ),
-                                    child: const Text(
-                                      "Portfolio",
-                                      style: TextStyle(
-                                          color: AppColors.DarkPrimaryColor,
-                                          fontSize: 18),
-                                    ),
-                                  ),
-                                ]),
-                              ],
-                            ))),
+                        left: tablet ? wp(20) : null,
+                        top: tablet ? hp(10) : wp(10),
+                        child: Flex(
+                            direction: tablet ? Axis.horizontal : Axis.vertical,
+                            children: [
+                              NameCard(
+                                  width: tablet ? wp(26) : wp(85),
+                                  height: hp(70)),
+                              SizedBox(width: wp(2), height: hp(2)),
+                              Container(
+                                  height: tablet ? hp(70) : null,
+                                  child: Column(
+                                    mainAxisAlignment: tablet
+                                        ? MainAxisAlignment.spaceEvenly
+                                        : MainAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        "Hello",
+                                        style: TextStyle(
+                                            fontSize: 60,
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                      Text(
+                                        "I'm a Flutter developer from the Philippines.",
+                                        style: TextStyle(
+                                            fontSize: 20,
+                                            fontWeight: FontWeight.w500),
+                                      ),
+                                      Row(children: [
+                                        ElevatedButton(
+                                          onPressed: () {},
+                                          style: ButtonStyle(
+                                            padding: MaterialStateProperty.all(
+                                                EdgeInsets.symmetric(
+                                                    horizontal: 35,
+                                                    vertical: 15)),
+                                            shape: MaterialStateProperty.all(
+                                                RoundedRectangleBorder(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            30.0))),
+                                          ),
+                                          child: const Text("Résumé",
+                                              style: TextStyle(fontSize: 18)),
+                                        ),
+                                        SizedBox(
+                                          width: 5,
+                                        ),
+                                        OutlinedButton(
+                                          onPressed: () {},
+                                          style: ButtonStyle(
+                                            padding: MaterialStateProperty.all(
+                                                EdgeInsets.symmetric(
+                                                    horizontal: 35,
+                                                    vertical: 15)),
+                                            side: MaterialStateProperty
+                                                .all<BorderSide>(BorderSide(
+                                                    color: AppColors
+                                                        .DarkPrimaryColor)),
+                                            shape: MaterialStateProperty.all(
+                                                RoundedRectangleBorder(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            30.0))),
+                                          ),
+                                          child: const Text(
+                                            "Portfolio",
+                                            style: TextStyle(
+                                                color:
+                                                    AppColors.DarkPrimaryColor,
+                                                fontSize: 18),
+                                          ),
+                                        ),
+                                      ]),
+                                    ],
+                                  ))
+                            ])),
                   ],
                 );
               },
