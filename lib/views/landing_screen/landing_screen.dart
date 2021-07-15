@@ -85,17 +85,18 @@ class _LandingScreenState extends State<LandingScreen> {
                   children: [
                     Container(
                       height: hp(100),
-                      child: Row(
+                      child: Flex(
+                        direction: tablet ? Axis.horizontal : Axis.vertical,
                         children: [
                           Expanded(
-                              flex: 40,
+                              flex: tablet ? 40 : 30,
                               child: Container(
-                                color: AppColors.AccentColor,
+                                color: tablet ? AppColors.AccentColor : AppColors.PrimaryColor,
                               )),
                           Expanded(
-                              flex: 60,
+                              flex: tablet ? 60 : 70,
                               child: Container(
-                                color: AppColors.PrimaryColor,
+                                color: tablet ? AppColors.PrimaryColor : AppColors.AccentColor,
                               ))
                         ],
                       ),

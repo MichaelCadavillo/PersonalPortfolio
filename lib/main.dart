@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:personal_portfolio/utility/colors.dart';
 import 'package:personal_portfolio/views/landing_screen/landing_screen.dart';
 
 void main() {
@@ -51,6 +52,7 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(fontFamily: "Roboto"),
+      color: AppColors.PrimaryColor,
       onGenerateRoute: (settings) {
         switch (settings.name) {
           case LandingScreen.routeName:

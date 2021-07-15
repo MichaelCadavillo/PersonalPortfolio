@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:personal_portfolio/utility/colors.dart';
+import 'package:personal_portfolio/utility/device_type.dart';
 import 'package:personal_portfolio/utility/screen_utils.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class NameCard extends StatelessWidget {
   double width;
@@ -12,6 +14,7 @@ class NameCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final Function hp = ScreenUtils(MediaQuery.of(context).size).hp;
     final Function wp = ScreenUtils(MediaQuery.of(context).size).wp;
+    final bool tablet = isTablet(MediaQuery.of(context));
     return Container(
       width: width,
       height: height,
@@ -44,7 +47,7 @@ class NameCard extends StatelessWidget {
                           flex: 60,
                           child: Container(
                             child: ClipRRect(
-                              borderRadius: BorderRadius.circular(100.0),
+                              borderRadius: BorderRadius.circular(hp(50)),
                               child: Image.asset("assets/images/profile.jpg"),
                             ),
                           ),
@@ -89,6 +92,7 @@ class NameCard extends StatelessWidget {
           Flexible(
               flex: 10,
               child: Container(
+                // padding: EdgeInsets.symmetric(vertical: hp(1)),
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.only(
                         bottomLeft: Radius.circular(5),
@@ -101,9 +105,64 @@ class NameCard extends StatelessWidget {
                       ),
                     ],
                     color: AppColors.PrimaryColor),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    socialMediaIcon(imageUrl: "assets/images/facebook.png",
+                        onTap: (){
+                          launchUrl("https://www.facebook.com/MichaelCadavillo/");
+                        },
+                        tablet: tablet,
+                        hp: hp,
+                        wp: wp
+                    ),
+                    socialMediaIcon(imageUrl: "assets/images/linkedin.png",
+                        onTap: (){
+                          launchUrl("https://www.linkedin.com/in/michaelcadavillo/");
+                        },
+                        tablet: tablet,
+                        hp: hp,
+                        wp: wp
+                    ),
+                    socialMediaIcon(imageUrl: "assets/images/github.png",
+                        onTap: (){
+                          launchUrl("https://github.com/MichaelCadavillo");
+                        },
+                        tablet: tablet,
+                        hp: hp,
+                        wp: wp
+                    ),
+                  ],
+                ),
               ))
         ],
       ),
     );
+  }
+
+  Widget socialMediaIcon({required String imageUrl, required Function() onTap, required bool tablet, required Function hp, required Function wp}){
+    return Container(
+      margin: EdgeInsets.symmetric(vertical: hp(1)),
+      child: Material(
+        child: InkWell(
+          onTap: onTap,
+          child: Ink(
+            color: AppColors.PrimaryColor,
+            child: Container(
+                padding: EdgeInsets.symmetric(vertical: hp(1.15), horizontal: tablet ? hp(1) : wp(2)),
+                child: Image.asset(imageUrl, fit: BoxFit.fitHeight)
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  void launchUrl(String url) async{
+    if (await canLaunch(url)) {
+      await launch(url);
+    }else {
+      throw Exception("Could not launch URL");
+    }
   }
 }
