@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:personal_portfolio/utility/colors.dart';
 import 'package:personal_portfolio/utility/device_type.dart';
 import 'package:personal_portfolio/utility/screen_utils.dart';
+import 'package:personal_portfolio/views/portfolio/portfolio_screen.dart';
+import 'package:personal_portfolio/views/resume/resume_screen.dart';
 import 'name_card.dart';
 
 class AboutMe extends StatelessWidget {
@@ -70,7 +72,9 @@ class AboutMe extends StatelessWidget {
                               ),
                               Row(children: [
                                 ElevatedButton(
-                                  onPressed: () {},
+                                  onPressed: () {
+                                    Navigator.of(context).pushReplacementNamed(Resume.routeName);
+                                    },
                                   style: ButtonStyle(
                                     padding: MaterialStateProperty.all(
                                         EdgeInsets.symmetric(
@@ -89,7 +93,9 @@ class AboutMe extends StatelessWidget {
                                   width: 5,
                                 ),
                                 OutlinedButton(
-                                  onPressed: () {},
+                                  onPressed: () {
+                                    Navigator.of(context).pushReplacementNamed(Portfolio.routeName);
+                                  },
                                   style: ButtonStyle(
                                     padding: MaterialStateProperty.all(
                                         EdgeInsets.symmetric(

@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:personal_portfolio/utility/colors.dart';
 import 'package:personal_portfolio/utility/device_type.dart';
 import 'package:personal_portfolio/utility/screen_utils.dart';
+import 'package:personal_portfolio/views/contact/contact_screen.dart';
+import 'package:personal_portfolio/views/portfolio/portfolio_screen.dart';
 import 'package:personal_portfolio/views/resume/resume_screen.dart';
 import '../about_me/about_me_screen.dart';
 import '../about_me/name_card.dart';
@@ -34,24 +36,46 @@ class _LandingScreenState extends State<LandingScreen> {
     );
   }
 
+  void screenNavigator(int index){
+    switch(index){
+      case 0: // About Me
+        _navigatorKey.currentState?.pushReplacementNamed(AboutMe.routeName);
+        break;
+      case 1: // Resume
+        _navigatorKey.currentState?.pushReplacementNamed(Resume.routeName);
+        break;
+      case 2: // Portfolio
+        _navigatorKey.currentState?.pushReplacementNamed(Portfolio.routeName);
+        break;
+      case 3: // Contact
+        _navigatorKey.currentState?.pushReplacementNamed(Contact.routeName);
+        break;
+
+    }
+    return ;
+  }
+
+  List<Widget> getNavButtonList(bool tablet){
+    return tablet
+        ? [
+            navButton(title: "About Me", onPressed: () => screenNavigator(0)),
+            navButton(title: "Resume", onPressed: () => screenNavigator(1)),
+            navButton(title: "Portfolio", onPressed: () => screenNavigator(2)),
+            navButton(title: "Contact", onPressed: () => screenNavigator(3)),
+          ]
+        : [
+          ListTile(title: Text("About Me")),
+          ListTile(title: Text("Resume")),
+          ListTile(title: Text("Portfolio")),
+          ListTile(title: Text("Contact")),
+        ];
+  }
+
   @override
   Widget build(BuildContext context) {
     final Function hp = ScreenUtils(MediaQuery.of(context).size).hp;
     final Function wp = ScreenUtils(MediaQuery.of(context).size).wp;
     final bool tablet = isTablet(MediaQuery.of(context));
-
-    void screenNavigator(int index){
-      switch(index){
-        case 0:
-          _navigatorKey.currentState?.pushReplacementNamed(AboutMe.routeName);
-          break;
-        case 1:
-          _navigatorKey.currentState?.pushReplacementNamed(Resume.routeName);
-          break;
-
-      }
-      return ;
-    }
 
     return BackdropScaffold(
         stickyFrontLayer: true,
@@ -103,11 +127,7 @@ class _LandingScreenState extends State<LandingScreen> {
         actions: <Widget>[
           tablet ?
               Row(
-                children: [
-                  navButton(title: "About Me", onPressed: () => screenNavigator(0)),
-                  navButton(title: "Resume", onPressed: () => screenNavigator(1)),
-                  navButton(title: "Portfolio", onPressed: () => screenNavigator(2)),
-                ],
+                children: getNavButtonList(tablet),
               )
               : BackdropToggleButton(
             color: AppColors.DarkPrimaryColor,
@@ -116,13 +136,10 @@ class _LandingScreenState extends State<LandingScreen> {
         ],
       ),
       backLayer: BackdropNavigationBackLayer(
-        items: [
-          ListTile(title: Text("About Me")),
-          ListTile(title: Text("Resume")),
-          ListTile(title: Text("Portfolio")),
-        ],
+        items: getNavButtonList(tablet),
         onTap: (int position) => screenNavigator(position),
       ),
+      frontLayerBorderRadius: BorderRadius.circular(0),
       frontLayer: Navigator(
         key: _navigatorKey,
         initialRoute: AboutMe.routeName,
@@ -131,12 +148,20 @@ class _LandingScreenState extends State<LandingScreen> {
 
           switch(settings.name){
             case AboutMe.routeName:
-              return PageRouteBuilder(settings: settings, pageBuilder: (context, anim, anim2){
+              return PageRouteBuilder(pageBuilder: (context, anim, anim2){
                 return AboutMe();
               });
             case Resume.routeName:
-              return PageRouteBuilder(settings: settings, pageBuilder: (context, anim, anim2){
+              return PageRouteBuilder(pageBuilder: (context, anim, anim2){
                 return Resume();
+              });
+            case Portfolio.routeName:
+              return PageRouteBuilder(pageBuilder: (context, anim, anim2){
+                return Portfolio();
+              });
+            case Contact.routeName:
+              return PageRouteBuilder(pageBuilder: (context, anim, anim2){
+                return Contact();
               });
           }
         },

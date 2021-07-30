@@ -56,7 +56,7 @@ class _MyHomePageState extends State<MyHomePage> {
       onGenerateRoute: (settings) {
         switch (settings.name) {
           case LandingScreen.routeName:
-            return MaterialPageRoute(builder: (context) => LandingScreen());
+            return MaterialPageRoute(builder: (context) => LandingScreen(), settings: settings);
         }
       },
       initialRoute: LandingScreen.routeName,

@@ -3,8 +3,8 @@ import 'package:personal_portfolio/utility/colors.dart';
 import 'package:personal_portfolio/utility/device_type.dart';
 import 'package:personal_portfolio/utility/screen_utils.dart';
 
-class Resume extends StatelessWidget {
-  static const routeName = "Resume";
+class Portfolio extends StatelessWidget {
+  static const routeName = "Portfolio";
   @override
   Widget build(BuildContext context) {
     final Function hp = ScreenUtils(MediaQuery.of(context).size).hp;
@@ -17,7 +17,7 @@ class Resume extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text("Resume", style: TextStyle(
+              Text("Portfolio", style: TextStyle(
                 fontSize: 25
               ),),
             ],

@@ -78,6 +78,7 @@ class NameCard extends StatelessWidget {
                           SizedBox(height: height * 0.05),
                           Text(
                             "FLUTTER DEVELOPER",
+                            textAlign: TextAlign.center,
                             style: TextStyle(
                                 letterSpacing: 5,
                                 fontSize: 15,
