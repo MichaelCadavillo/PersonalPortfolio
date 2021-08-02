@@ -86,7 +86,7 @@ class AboutMe extends StatelessWidget {
                                             BorderRadius.circular(
                                                 30.0))),
                                   ),
-                                  child: const Text("Résumé",
+                                  child: const Text("Resume",
                                       style: TextStyle(fontSize: 18)),
                                 ),
                                 SizedBox(

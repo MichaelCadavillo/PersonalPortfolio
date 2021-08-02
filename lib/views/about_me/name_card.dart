@@ -5,8 +5,8 @@ import 'package:personal_portfolio/utility/screen_utils.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class NameCard extends StatelessWidget {
-  double width;
-  double height;
+  final double width;
+  final double height;
 
   NameCard({required this.width, required this.height});
 
