@@ -3,6 +3,7 @@ import 'package:personal_portfolio/utility/colors.dart';
 import 'package:personal_portfolio/utility/device_type.dart';
 import 'package:personal_portfolio/utility/screen_utils.dart';
 import 'package:personal_portfolio/views/resume/exp_card.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class Resume extends StatelessWidget {
   static const routeName = "Resume";
@@ -49,6 +50,7 @@ class Resume extends StatelessWidget {
                       ),
                   ElevatedButton(
                     onPressed: () {
+                      launchUrl("https://www.google.com");
                     },
                     style: ButtonStyle(
                       padding: MaterialStateProperty.all(
@@ -66,12 +68,39 @@ class Resume extends StatelessWidget {
                   ),
                     ],
                   ),
-
                 ),
-                ExperienceCard(),
-                ExperienceCard(),
-                ExperienceCard(),
-                ExperienceCard(),
+                ExperienceCard(
+                  companyName: "Accenture Inc.",
+                  companyLocation: "Quezon City, Philippines",
+                  description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin quis est non nunc consequat vulputate. Aenean posuere, metus eget semper fermentum, sem justo efficitur magna, non tincidunt est elit tempor sapien. Donec mattis vel lorem id lobortis. Nunc sed placerat orci. Suspendisse tempus quam quis condimentum rutrum.",
+                  dateFrom: "Aug. 2019",
+                  dateTo: "Feb. 2021",
+                  position: "Associate Software Engineer",
+                ),
+                ExperienceCard(
+                  companyName: "Company",
+                  companyLocation: "Quezon City, Philippines",
+                  description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin quis est non nunc consequat vulputate. Aenean posuere, metus eget semper fermentum, sem justo efficitur magna, non tincidunt est elit tempor sapien. Donec mattis vel lorem id lobortis. Nunc sed placerat orci. Suspendisse tempus quam quis condimentum rutrum.",
+                  dateFrom: "Aug. 2019",
+                  dateTo: "Feb. 2021",
+                  position: "Associate Software Engineer",
+                ),
+                ExperienceCard(
+                  companyName: "Company",
+                  companyLocation: "Quezon City, Philippines",
+                  description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin quis est non nunc consequat vulputate. Aenean posuere, metus eget semper fermentum, sem justo efficitur magna, non tincidunt est elit tempor sapien. Donec mattis vel lorem id lobortis. Nunc sed placerat orci. Suspendisse tempus quam quis condimentum rutrum.",
+                  dateFrom: "Aug. 2019",
+                  dateTo: "Feb. 2021",
+                  position: "Associate Software Engineer",
+                ),
+                ExperienceCard(
+                  companyName: "Company",
+                  companyLocation: "Quezon City, Philippines",
+                  description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin quis est non nunc consequat vulputate. Aenean posuere, metus eget semper fermentum, sem justo efficitur magna, non tincidunt est elit tempor sapien. Donec mattis vel lorem id lobortis. Nunc sed placerat orci. Suspendisse tempus quam quis condimentum rutrum.",
+                  dateFrom: "Aug. 2019",
+                  dateTo: "Feb. 2021",
+                  position: "Associate Software Engineer",
+                ),
 
               ],
             ),
@@ -79,5 +108,13 @@ class Resume extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  void launchUrl(String url) async{
+    if (await canLaunch(url)) {
+      await launch(url);
+    }else {
+      throw Exception("Could not launch URL");
+    }
   }
 }
